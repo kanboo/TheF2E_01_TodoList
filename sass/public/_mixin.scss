@@ -1,0 +1,14 @@
+@mixin textColor($color) {
+  color: $color;
+}
+
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h;
+}
+
+@mixin flex($main, $other: $main) {
+  display: flex;
+  justify-content: $main;
+  align-items: $other;
+}

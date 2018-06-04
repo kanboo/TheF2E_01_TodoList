@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="./css/main.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/regular.js" integrity="sha384-t7yHmUlwFrLxHXNLstawVRBMeSLcXTbQ5hsd0ifzwGtN7ZF7RZ8ppM7Ldinuoiif"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+    crossorigin="anonymous"></script>
+
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <header class="header">
+      <ul class="nav">
+        <div class="nav__item">
+          <a href="#" class="nva__item--link">My Tasks</a>
+        </div>
+        <div class="nav__item">
+          <a href="#" class="nva__item--link">In Progress</a>
+        </div>
+        <div class="nav__item">
+          <a href="#" class="nva__item--link">Completed</a>
+        </div>
+      </ul>
+    </header>
+
+    <div class="card todoadditem">
+      <button class="btn btn-primary" type="button">Add Task</button>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card__header">
+          <input type="checkbox" id="one">
+          <label for="one">Cloud project with Dannie</label>
+          <i class="far fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <div class="card__body">
+          <div class="card__body--Deadline">
+            <i class="far fa-calendar-alt"></i>
+            <p>Deadline</p>
+            <input type="date" name="" id="">
+            <input type="datetime" name="" id="">
+          </div>
+          <div class="card__body--File">
+            <i class="far fa-file"></i>
+            <input type="file" class="custom-file-input" id="customFile">
+            <i class="fas fa-plus-square"></i>
+          </div>
+          <div class="card__body--Comment">
+            <i class="far fa-comment-alt"></i>
+            <p>Comment</p>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+        </div>
+
+        <div class="card__footer">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-times"></i>
+            <span>Cancel</span>
+          </button>
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-plus"></i>
+            <span>Save</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="cards__footer">
+        <span>還有 3 筆任務未完成</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
