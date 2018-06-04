@@ -1,10 +1,6 @@
-@mixin textColor($color) {
-  color: $color;
-}
-
-@mixin size($w, $h: $w) {
-  width: $w;
-  height: $h;
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
 }
 
 @mixin flex($main, $other: $main) {

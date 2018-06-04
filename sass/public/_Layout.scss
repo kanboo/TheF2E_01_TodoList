@@ -1,16 +1,57 @@
-*{
-	box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,*::before,*::after {
+  box-sizing: border-box; // 1
+  margin: 0;
+  padding: 0;
 }
-h1,h2,h3,h4,h5,h6,span,p,a,input,button,div{
-	font-family: "Microsoft JhengHei","Heiti TC","sans-serif";
-	text-decoration: none;
+
+html {
+  font-family: sans-serif; // 2
+  line-height: 1.15; // 3
+
+  -ms-overflow-style: scrollbar; // 5
+  -webkit-tap-highlight-color: rgba($black, 0); // 6
+  -webkit-text-size-adjust: 100%; // 4
+      -ms-text-size-adjust: 100%; // 4
 }
-img{
-	display: block;
+
+body {
+  margin: 0; // 1
+  text-align: left; // 3
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-base;
+  line-height: $line-height-base;
 }
-html,body{
-	width: 100%;
-	height: 100%;
+
+//
+// Typography
+//
+
+// Remove top margins from headings
+//
+// By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
+// margin for easier control within type scales as it avoids margin collapsing.
+// stylelint-disable selector-list-comma-newline-after
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0;
+  margin-bottom: $headings-margin-bottom;
+}
+// stylelint-enable selector-list-comma-newline-after
+
+// Reset margins on paragraphs
+//
+// Similarly, the top margin on `<p>`s get reset. However, we also reset the
+// bottom margin to use `rem` units instead of `em`.
+p {
+  margin-top: 0;
+  margin-bottom: $paragraph-margin-bottom;
+}
+
+h1,h2,h3,h4,h5,h6,span,p,a,input,button,div {
+  text-decoration: none;
+  font-family: "Microsoft JhengHei", "Heiti TC", "sans-serif";
+}
+
+img {
+  display: block;
 }
