@@ -22,7 +22,7 @@
     <header class="header">
       <ul class="nav">
         <div class="nav__item">
-          <a href="#" class="nva__item--link">My Tasks</a>
+          <a href="#" class="nva__item--link active">My Tasks</a>
         </div>
         <div class="nav__item">
           <a href="#" class="nva__item--link">In Progress</a>
@@ -33,19 +33,30 @@
       </ul>
     </header>
 
-    <div class="card todoadditem">
-      <button class="btn btn-primary" type="button">Add Task</button>
-    </div>
+
 
     <div class="cards">
 
+      <div class="addtask">
+        <button class="btn btn-primary" type="button">Add Task</button>
+      </div>
+
       <div class="card">
         <div class="card__header">
-          <input type="checkbox" id="one">
-          <label for="one">Cloud project with Dannie</label>
-          <i class="far fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-pencil-alt"></i>
+
+          <label for="one">
+            <input type="checkbox" class="checkbox--options" id="one">
+            <span>Cloud project with Dannie</span>
+          </label>
+          <a href="#" class="favorite">
+            <i class="far fa-star"></i>
+          </a>
+
+          <!-- <i class="fas fa-star"></i> -->
+          <a href="#" class="edit">
+            <i class="fas fa-pencil-alt"></i>
+          </a>
+
         </div>
 
         <div class="card__body">
