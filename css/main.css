@@ -900,4 +900,8 @@ img {
 .card__footer .btn--add:hover {
   background: #3982d7;
 }
+
+.card:nth-child(n + 2) {
+  margin-top: 20px;
+}
 /*# sourceMappingURL=main.css.map */

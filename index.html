@@ -22,18 +22,16 @@
     <header class="header">
       <ul class="nav">
         <div class="nav__item">
-          <a href="#" class="nva__item--link active">My Tasks</a>
+          <a href="#" class="nva__item--link" :class="{'active': visibility === 'all'}" @click="visibility = 'all'">My Tasks</a>
         </div>
         <div class="nav__item">
-          <a href="#" class="nva__item--link">In Progress</a>
+          <a href="#" class="nva__item--link" :class="{'active': visibility === 'progress'}" @click="visibility = 'progress'">In Progress</a>
         </div>
         <div class="nav__item">
-          <a href="#" class="nva__item--link">Completed</a>
+          <a href="#" class="nva__item--link" :class="{'active': visibility === 'completed'}" @click="visibility = 'completed'">Completed</a>
         </div>
       </ul>
     </header>
-
-
 
     <div class="cards">
 
@@ -137,20 +135,20 @@
         </div>
       </div>
 
-      <div class="card" class="">
+      <div class="card" class="" v-for="(item, index) in todos">
         <div class="card__header">
 
           <div class="taskinfo">
-            <label for="one_completed" class="checkbox--completed">
-              <input type="checkbox" class="checkbox" id="one_completed">
-              <span class="completed">Cloud project with Dannie</span>
-              <input type="text" class="tasktitle" placeholder="Type Something Here…">
+            <label :for="item.id + '_completed'" class="checkbox--completed">
+              <input type="checkbox" class="checkbox" :id="item.id + '_completed'" v-model="item.isCompleted">
+              <span class="completed">{{ item.title }}</span>
+              <input type="text" class="tasktitle" placeholder="Type Something Here…" v-model="item.title">
             </label>
 
             <div class="icons">
               <span class="titleicon">
                 <i class="far fa-calendar-alt"></i>
-                5/14
+                {{ item.date }}
               </span>
               <span class="titleicon">
                 <i class="far fa-file"></i>
@@ -162,8 +160,8 @@
           </div>
 
 
-          <label for="id_favorite" class="checkbox--favorite">
-            <input type="checkbox" id="id_favorite">
+          <label :for="item.id + '_favorite'" class="checkbox--favorite">
+            <input type="checkbox" :id="item.id + '_favorite'" v-model="item.isFavorite">
             <div class="farblock">
               <i class="far fa-star"></i>
             </div>
@@ -185,9 +183,6 @@
               <i class="fas fa-pencil-alt"></i>
             </div>
           </a>
-
-
-
         </div>
 
         <div class="card__body">
@@ -197,18 +192,18 @@
             </span>
 
             <p>Deadline</p>
-            <input type="datetime" placeholder="yyyy/mm/dd">
-            <input type="datetime" placeholder="hh:mm">
+            <input type="text" placeholder="yyyy/mm/dd" v-model="item.date">
+            <input type="text" placeholder="hh:mm" v-model="item.time">
           </div>
           <div class="card__body--File">
             <span class="titleicon">
               <i class="far fa-file"></i>
             </span>
             <p>File</p>
-            <p id="filename">Select your file</p>
+            <p id="filename">{{ item.filename }}</p>
             <label class="fileicon" for="file-upload">
               <i class="fas fa-plus-square"></i>
-              <input type="file" id="file-upload">
+              <input type="file" id="file-upload" @change="getFiles($event, item)">
             </label>
 
             <!-- <input type="file" class="custom-file-input" id="file-upload">
@@ -221,7 +216,7 @@
               <i class="far fa-comment-alt"></i>
             </span>
             <p>Comment</p>
-            <textarea cols="50" rows="5" placeholder="Type your memo here..."></textarea>
+            <textarea cols="50" rows="5" placeholder="Type your memo here..." v-model="item.comment"></textarea>
           </div>
         </div>
 
@@ -254,7 +249,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="./app.js"></script>
+  <script src="./all.js"></script>
 </body>
 
 </html>

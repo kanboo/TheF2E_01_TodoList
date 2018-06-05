@@ -349,4 +349,8 @@ $header-hight: 72px;
       }
     }
   }
+
+  &:nth-child(n + 2) {
+    margin-top: 20px;
+  }
 }
