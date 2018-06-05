@@ -46,7 +46,7 @@ $header-hight: 72px;
 
 .addtask {
   // @include outline(red);
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 
   #newtask {
     @include size(620px, 50px);
@@ -63,19 +63,19 @@ $header-hight: 72px;
     }
   }
 
-  .card {
-    display: none;
-  }
+  // .card {
+  //   display: none;
+  // }
 
-  &.active {
-    #newtask {
-      display: none;
-    }
+  // &.active {
+  //   #newtask {
+  //     display: none;
+  //   }
 
-    .card {
-      display: block;
-    }
-  }
+  //   .card {
+  //     display: block;
+  //   }
+  // }
 }
 
 .cards {
@@ -112,14 +112,23 @@ $header-hight: 72px;
     background: #f2f2f2;
     font-size: 1.5rem;
 
+    &--read {
+      @include size(100%, 106px);
+    }
+
+    &.favorite {
+      background: #fff2dc;
+    }
+
     .taskinfo {
       position: relative;
 
       .icons {
         position: absolute;
-        top: 2rem;
+        top: 42px;
         left: 3rem;
-        display: none;
+        width: 200px;
+        // display: none;
         color: #757575;
         font-size: 1rem;
 
@@ -158,11 +167,6 @@ $header-hight: 72px;
         &:checked ~ span {
           text-decoration: line-through;
         }
-      }
-
-      span {
-        // 程式控制
-        display: none;
       }
 
       input {
@@ -273,6 +277,10 @@ $header-hight: 72px;
       .fileicon {
         color: #c8c8c8;
         font-size: 1.2rem;
+
+        &:hover {
+          color: #4a90e2;
+        }
       }
 
       #file-upload {

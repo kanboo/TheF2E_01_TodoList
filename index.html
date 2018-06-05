@@ -14,7 +14,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
     crossorigin="anonymous"></script>
 
-  <title>Document</title>
+  <title>TheF2E_01_TodoList</title>
 </head>
 
 <body>
@@ -35,25 +35,25 @@
 
     <div class="cards">
 
-      <div class="addtask activeX">
-        <a href="#" id="newtask">
+      <div class="addtask" :class="{ 'active' : isNewTodo }">
+        <a href="#" id="newtask" @click.parent="addTodo" v-if="!isNewTodo">
           <span class="iconplus">
             <i class="fas fa-plus"></i>
           </span>
           <span> Add Task</span>
         </a>
 
-        <div class="card" class="">
-          <div class="card__header">
+        <div class="card" class="" v-if="isNewTodo">
+          <div class="card__header" :class="{ 'favorite' : newTodo.isFavorite }">
 
-            <label for="one_completed" class="checkbox--completed">
-              <input type="checkbox" class="checkbox" id="one_completed">
+            <label for="new_completed" class="checkbox--completed">
+              <input type="checkbox" class="checkbox" id="new_completed" v-model="newTodo.isCompleted">
               <!-- <span class="completed">Cloud project with Dannie</span> -->
-              <input type="text" class="tasktitle" placeholder="Type Something Here…">
+              <input type="text" class="tasktitle" v-focus placeholder="Type Something Here…" v-model="newTodo.title">
             </label>
 
-            <label for="one_favorite" class="checkbox--favorite">
-              <input type="checkbox" id="one_favorite">
+            <label for="new_favorite" class="checkbox--favorite">
+              <input type="checkbox" id="new_favorite" v-model="newTodo.isFavorite">
               <div class="farblock">
                 <i class="far fa-star"></i>
               </div>
@@ -84,15 +84,15 @@
               </span>
 
               <p>Deadline</p>
-              <input type="datetime" placeholder="yyyy/mm/dd">
-              <input type="datetime" placeholder="hh:mm">
+              <input type="datetime" placeholder="yyyy/mm/dd" v-model="newTodo.date">
+              <input type="datetime" placeholder="hh:mm" v-model="newTodo.time">
             </div>
             <div class="card__body--File">
               <span class="titleicon">
                 <i class="far fa-file"></i>
               </span>
               <p>File</p>
-              <p id="filename">Select your file</p>
+              <p id="filename">111</p>
               <label class="fileicon" for="file-upload">
                 <i class="fas fa-plus-square"></i>
                 <input type="file" id="file-upload">
@@ -108,12 +108,12 @@
                 <i class="far fa-comment-alt"></i>
               </span>
               <p>Comment</p>
-              <textarea cols="50" rows="5" placeholder="Type your memo here..."></textarea>
+              <textarea cols="50" rows="5" placeholder="Type your memo here..." v-model="newTodo.comment"></textarea>
             </div>
           </div>
 
           <div class="card__footer">
-            <button class="btn btn--cancel" type="button">
+            <button class="btn btn--cancel" type="button" @click.parent="cancelEdit">
               <div class="farblock">
                 <i class="far fa-trash-alt"></i>
               </div>
@@ -122,12 +122,14 @@
               </div>
               <span>Cancel</span>
             </button>
-            <button class="btn btn--add" type="button">
+            <button class="btn btn--add" type="button" @click.parent="saveTodo(null)">
               <div class="farblock">
-                <i class="far fa-plus-square"></i>
+                <!-- <i class="far fa-plus-square"></i> -->
+                <i class="far fa-save"></i>
               </div>
               <div class="fasblock">
-                <i class="fas fa-plus-square"></i>
+                <!-- <i class="fas fa-plus-square"></i> -->
+                <i class="fas fa-save"></i>
               </div>
               <span>Save</span>
             </button>
@@ -135,25 +137,27 @@
         </div>
       </div>
 
-      <div class="card" class="" v-for="(item, index) in todos">
-        <div class="card__header">
+      <div class="card" class="" v-for="(item, index) in filteredTodos">
+
+        <!-- 閱讀區 -->
+        <div class="card__header card__header--read" :class="{ 'favorite' : item.isFavorite }" v-if="item.id !==cacheTodo.id">
 
           <div class="taskinfo">
             <label :for="item.id + '_completed'" class="checkbox--completed">
               <input type="checkbox" class="checkbox" :id="item.id + '_completed'" v-model="item.isCompleted">
               <span class="completed">{{ item.title }}</span>
-              <input type="text" class="tasktitle" placeholder="Type Something Here…" v-model="item.title">
+              <!-- <input type="text" class="tasktitle" placeholder="Type Something Here…" v-model="item.title"> -->
             </label>
 
             <div class="icons">
-              <span class="titleicon">
+              <span class="titleicon" v-if="item.date !== ''">
                 <i class="far fa-calendar-alt"></i>
-                {{ item.date }}
+                {{ item.date.substr(5) }}
               </span>
-              <span class="titleicon">
+              <span class="titleicon" v-if="item.filename !== ''">
                 <i class="far fa-file"></i>
               </span>
-              <span class="titleicon">
+              <span class="titleicon" v-if="item.comment !== ''">
                 <i class="far fa-comment-alt"></i>
               </span>
             </div>
@@ -170,11 +174,11 @@
             </div>
           </label>
           <!-- <a href="#" class="favorite">
-            <i class="far fa-star"></i>
-          </a> -->
+                <i class="far fa-star"></i>
+              </a> -->
 
 
-          <a href="#" class="edit activeX">
+          <a href="#" class="edit" @click.parent="editTodo(item)">
             <!-- <i class="fas fa-pencil-alt"></i> -->
             <div class="farblock">
               <i class="far fa-edit"></i>
@@ -185,25 +189,76 @@
           </a>
         </div>
 
-        <div class="card__body">
+        <!-- 編輯區 -->
+
+        <div class="card__header" :class="{ 'favorite' : item.isFavorite }" v-if="item.id===cacheTodo.id">
+
+          <div class="taskinfo">
+            <label :for="cacheTodo.id + '_completed'" class="checkbox--completed">
+              <input type="checkbox" class="checkbox" :id="cacheTodo.id + '_completed'" v-model="cacheTodo.isCompleted">
+              <!-- <span class="completed">{{ cacheTodo.title }}</span> -->
+              <input type="text" class="tasktitle" v-focus placeholder="Type Something Here…" v-model="cacheTodo.title">
+            </label>
+
+            <!-- <div class="icons">
+              <span class="titleicon">
+                <i class="far fa-calendar-alt"></i>
+                {{ cacheTodo.date }}
+              </span>
+              <span class="titleicon">
+                <i class="far fa-file"></i>
+              </span>
+              <span class="titleicon">
+                <i class="far fa-comment-alt"></i>
+              </span>
+            </div> -->
+          </div>
+
+
+          <label :for="cacheTodo.id + '_favorite'" class="checkbox--favorite">
+            <input type="checkbox" :id="cacheTodo.id + '_favorite'" v-model="cacheTodo.isFavorite">
+            <div class="farblock">
+              <i class="far fa-star"></i>
+            </div>
+            <div class="fasblock">
+              <i class="fas fa-star"></i>
+            </div>
+          </label>
+          <!-- <a href="#" class="favorite">
+            <i class="far fa-star"></i>
+          </a> -->
+
+
+          <a href="#" class="edit active">
+            <!-- <i class="fas fa-pencil-alt"></i> -->
+            <div class="farblock">
+              <i class="far fa-edit"></i>
+            </div>
+            <div class="fasblock">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </a>
+        </div>
+
+        <div class="card__body" v-if="item.id===cacheTodo.id">
           <div class="card__body--Deadline">
             <span class="titleicon">
               <i class="far fa-calendar-alt"></i>
             </span>
 
             <p>Deadline</p>
-            <input type="text" placeholder="yyyy/mm/dd" v-model="item.date">
-            <input type="text" placeholder="hh:mm" v-model="item.time">
+            <input type="text" placeholder="yyyy/mm/dd" v-model="cacheTodo.date">
+            <input type="text" placeholder="hh:mm" v-model="cacheTodo.time">
           </div>
           <div class="card__body--File">
             <span class="titleicon">
               <i class="far fa-file"></i>
             </span>
             <p>File</p>
-            <p id="filename">{{ item.filename }}</p>
+            <p id="filename">{{ cacheTodo.filename }}</p>
             <label class="fileicon" for="file-upload">
               <i class="fas fa-plus-square"></i>
-              <input type="file" id="file-upload" @change="getFiles($event, item)">
+              <input type="file" id="file-upload" @change="getFiles($event, cacheTodo)">
             </label>
 
             <!-- <input type="file" class="custom-file-input" id="file-upload">
@@ -216,12 +271,12 @@
               <i class="far fa-comment-alt"></i>
             </span>
             <p>Comment</p>
-            <textarea cols="50" rows="5" placeholder="Type your memo here..." v-model="item.comment"></textarea>
+            <textarea cols="50" rows="5" placeholder="Type your memo here..." v-model="cacheTodo.comment"></textarea>
           </div>
         </div>
 
-        <div class="card__footer">
-          <button class="btn btn--cancel" type="button">
+        <div class="card__footer" v-if="item.id===cacheTodo.id">
+          <button class="btn btn--cancel" type="button" @click.parent="cancelEdit">
             <div class="farblock">
               <i class="far fa-trash-alt"></i>
             </div>
@@ -230,12 +285,14 @@
             </div>
             <span>Cancel</span>
           </button>
-          <button class="btn btn--add" type="button">
+          <button class="btn btn--add" type="button" @click.parent="saveTodo(item)">
             <div class="farblock">
-              <i class="far fa-plus-square"></i>
+              <!-- <i class="far fa-plus-square"></i> -->
+              <i class="far fa-save"></i>
             </div>
             <div class="fasblock">
-              <i class="fas fa-plus-square"></i>
+              <!-- <i class="fas fa-plus-square"></i> -->
+              <i class="fas fa-save"></i>
             </div>
             <span>Save</span>
           </button>
@@ -243,7 +300,7 @@
       </div>
 
       <div class="cards__footer">
-        <span> 3 tasks left</span>
+        <span> {{ filteredTodos.length }} tasks left</span>
       </div>
     </div>
   </div>

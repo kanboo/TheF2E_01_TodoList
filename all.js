@@ -1,29 +1,58 @@
 (() => {
   const data = {
-    message: 'Hell!',
     todos: [
       {
-        id: 1,
+        id: '1',
         title: '第一筆測試資料',
-        date: '2018/06/04',
+        date: '2018/02/04',
         time: '16:20',
+        filename: 'text.word',
+        comment: 'I am a superman.',
+        isCompleted: false,
+        isFavorite: true
+      },
+      {
+        id: '2',
+        title: '第二筆測試資料',
+        date: '',
+        time: '',
         filename: 'text.word',
         comment: 'I am a superman.',
         isCompleted: false,
         isFavorite: false
       },
       {
-        id: 2,
-        title: '第二筆測試資料',
-        date: '2018/06/05',
+        id: '3',
+        title: '第三筆測試資料',
+        date: '2018/06/25',
         time: '16:20',
         filename: 'text.word',
         comment: 'I am a superman.',
-        isCompleted: false,
+        isCompleted: true,
         isFavorite: false
+      },
+      {
+        id: '4',
+        title: '第四筆測試資料',
+        date: '2018/09/05',
+        time: '16:20',
+        filename: 'text.word',
+        comment: '',
+        isCompleted: false,
+        isFavorite: true
       }
     ],
-    cacheTitle: '',
+    isNewTodo: false,
+    newTodo: {
+      id: '',
+      title: '',
+      date: '',
+      time: '',
+      filename: '',
+      comment: '',
+      isCompleted: false,
+      isFavorite: false
+    },
     cacheTodo: {},
     visibility: 'all'
   };
@@ -31,14 +60,58 @@
   var app = new Vue({
     el: '#app',
     data: data,
+    directives: {
+      focus: {
+        // 指令的定義
+        inserted: function(el) {
+          el.focus();
+        }
+      }
+    },
     methods: {
-      addTodo: function() {},
-      editTodo(item) {
-        this.cacheTitle = item.title;
-        this.cacheTodo = item;
+      resetNewTodo(isNew) {
+        this.isNewTodo = isNew;
+        const timestamp = isNew ? Math.floor(Date.now()) : '';
+
+        this.newTodo = {
+          id: timestamp,
+          title: '',
+          date: '',
+          time: '',
+          filename: '',
+          comment: '',
+          isCompleted: false,
+          isFavorite: false
+        };
       },
-      canceleEdit: function() {
-        this.cacheText = '';
+      addTodo() {
+        this.cacheTodo = {};
+        this.resetNewTodo(true);
+      },
+      editTodo(item) {
+        // this.cacheTitle = item.title;
+        this.resetNewTodo(false);
+        this.cacheTodo = JSON.parse(JSON.stringify(item));
+      },
+      cancelEdit() {
+        this.resetNewTodo(false);
+        this.cacheTodo = {};
+      },
+      saveTodo(item) {
+        // console.log(item);
+
+        if (item === null) {
+          if (this.newTodo.title === '') return;
+          this.todos.push(this.newTodo);
+        } else {
+          for (var key of Object.keys(this.cacheTodo)) {
+            //使用Object.keys()方法取得物件的Key的陣列
+            // console.log(key + ': ' + this.cacheTodo[key]);
+            item[key] = this.cacheTodo[key];
+          }
+        }
+
+        this.resetNewTodo(false);
         this.cacheTodo = {};
       },
       getFiles(e, item) {
@@ -48,7 +121,12 @@
     },
     computed: {
       filteredTodos: function() {
-        console.log(this.visibility);
+        // console.log(this.visibility);
+        console.log('filteredTodos~~~~');
+
+        this.todos.sort((a, b) => (a.isFavorite < b.isFavorite ? 1 : -1));
+
+        // console.log(this.todos);
 
         if (this.visibility === 'all') {
           return this.todos;
@@ -64,6 +142,4 @@
       }
     }
   });
-
-  console.log(app);
 })();
