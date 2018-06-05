@@ -37,61 +37,218 @@
 
     <div class="cards">
 
-      <div class="addtask">
-        <button class="btn btn-primary" type="button">Add Task</button>
+      <div class="addtask activeX">
+        <a href="#" id="newtask">
+          <span class="iconplus">
+            <i class="fas fa-plus"></i>
+          </span>
+          <span> Add Task</span>
+        </a>
+
+        <div class="card" class="">
+          <div class="card__header">
+
+            <label for="one_completed" class="checkbox--completed">
+              <input type="checkbox" class="checkbox" id="one_completed">
+              <!-- <span class="completed">Cloud project with Dannie</span> -->
+              <input type="text" class="tasktitle" placeholder="Type Something Here…">
+            </label>
+
+            <label for="one_favorite" class="checkbox--favorite">
+              <input type="checkbox" id="one_favorite">
+              <div class="farblock">
+                <i class="far fa-star"></i>
+              </div>
+              <div class="fasblock">
+                <i class="fas fa-star"></i>
+              </div>
+            </label>
+            <!-- <a href="#" class="favorite">
+                <i class="far fa-star"></i>
+              </a> -->
+
+
+            <a href="#" class="edit active">
+              <div class="farblock">
+                <i class="far fa-edit"></i>
+              </div>
+              <div class="fasblock">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </a>
+
+          </div>
+
+          <div class="card__body">
+            <div class="card__body--Deadline">
+              <span class="titleicon">
+                <i class="far fa-calendar-alt"></i>
+              </span>
+
+              <p>Deadline</p>
+              <input type="datetime" placeholder="yyyy/mm/dd">
+              <input type="datetime" placeholder="hh:mm">
+            </div>
+            <div class="card__body--File">
+              <span class="titleicon">
+                <i class="far fa-file"></i>
+              </span>
+              <p>File</p>
+              <p id="filename">Select your file</p>
+              <label class="fileicon" for="file-upload">
+                <i class="fas fa-plus-square"></i>
+                <input type="file" id="file-upload">
+              </label>
+
+              <!-- <input type="file" class="custom-file-input" id="file-upload">
+                <span class="fileicon">
+                  <i class="fas fa-plus-square"></i>
+                </span> -->
+            </div>
+            <div class="card__body--Comment">
+              <span class="titleicon">
+                <i class="far fa-comment-alt"></i>
+              </span>
+              <p>Comment</p>
+              <textarea cols="50" rows="5" placeholder="Type your memo here..."></textarea>
+            </div>
+          </div>
+
+          <div class="card__footer">
+            <button class="btn btn--cancel" type="button">
+              <div class="farblock">
+                <i class="far fa-trash-alt"></i>
+              </div>
+              <div class="fasblock">
+                <i class="fas fa-trash-alt"></i>
+              </div>
+              <span>Cancel</span>
+            </button>
+            <button class="btn btn--add" type="button">
+              <div class="farblock">
+                <i class="far fa-plus-square"></i>
+              </div>
+              <div class="fasblock">
+                <i class="fas fa-plus-square"></i>
+              </div>
+              <span>Save</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="card">
+      <div class="card" class="">
         <div class="card__header">
 
-          <label for="one">
-            <input type="checkbox" class="checkbox--options" id="one">
-            <span>Cloud project with Dannie</span>
+          <div class="taskinfo">
+            <label for="one_completed" class="checkbox--completed">
+              <input type="checkbox" class="checkbox" id="one_completed">
+              <span class="completed">Cloud project with Dannie</span>
+              <input type="text" class="tasktitle" placeholder="Type Something Here…">
+            </label>
+
+            <div class="icons">
+              <span class="titleicon">
+                <i class="far fa-calendar-alt"></i>
+                5/14
+              </span>
+              <span class="titleicon">
+                <i class="far fa-file"></i>
+              </span>
+              <span class="titleicon">
+                <i class="far fa-comment-alt"></i>
+              </span>
+            </div>
+          </div>
+
+
+          <label for="id_favorite" class="checkbox--favorite">
+            <input type="checkbox" id="id_favorite">
+            <div class="farblock">
+              <i class="far fa-star"></i>
+            </div>
+            <div class="fasblock">
+              <i class="fas fa-star"></i>
+            </div>
           </label>
-          <a href="#" class="favorite">
+          <!-- <a href="#" class="favorite">
             <i class="far fa-star"></i>
+          </a> -->
+
+
+          <a href="#" class="edit activeX">
+            <!-- <i class="fas fa-pencil-alt"></i> -->
+            <div class="farblock">
+              <i class="far fa-edit"></i>
+            </div>
+            <div class="fasblock">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
           </a>
 
-          <!-- <i class="fas fa-star"></i> -->
-          <a href="#" class="edit">
-            <i class="fas fa-pencil-alt"></i>
-          </a>
+
 
         </div>
 
         <div class="card__body">
           <div class="card__body--Deadline">
-            <i class="far fa-calendar-alt"></i>
+            <span class="titleicon">
+              <i class="far fa-calendar-alt"></i>
+            </span>
+
             <p>Deadline</p>
-            <input type="date" name="" id="">
-            <input type="datetime" name="" id="">
+            <input type="datetime" placeholder="yyyy/mm/dd">
+            <input type="datetime" placeholder="hh:mm">
           </div>
           <div class="card__body--File">
-            <i class="far fa-file"></i>
-            <input type="file" class="custom-file-input" id="customFile">
-            <i class="fas fa-plus-square"></i>
+            <span class="titleicon">
+              <i class="far fa-file"></i>
+            </span>
+            <p>File</p>
+            <p id="filename">Select your file</p>
+            <label class="fileicon" for="file-upload">
+              <i class="fas fa-plus-square"></i>
+              <input type="file" id="file-upload">
+            </label>
+
+            <!-- <input type="file" class="custom-file-input" id="file-upload">
+            <span class="fileicon">
+              <i class="fas fa-plus-square"></i>
+            </span> -->
           </div>
           <div class="card__body--Comment">
-            <i class="far fa-comment-alt"></i>
+            <span class="titleicon">
+              <i class="far fa-comment-alt"></i>
+            </span>
             <p>Comment</p>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea cols="50" rows="5" placeholder="Type your memo here..."></textarea>
           </div>
         </div>
 
         <div class="card__footer">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-times"></i>
+          <button class="btn btn--cancel" type="button">
+            <div class="farblock">
+              <i class="far fa-trash-alt"></i>
+            </div>
+            <div class="fasblock">
+              <i class="fas fa-trash-alt"></i>
+            </div>
             <span>Cancel</span>
           </button>
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-plus"></i>
+          <button class="btn btn--add" type="button">
+            <div class="farblock">
+              <i class="far fa-plus-square"></i>
+            </div>
+            <div class="fasblock">
+              <i class="fas fa-plus-square"></i>
+            </div>
             <span>Save</span>
           </button>
         </div>
       </div>
 
       <div class="cards__footer">
-        <span>還有 3 筆任務未完成</span>
+        <span> 3 tasks left</span>
       </div>
     </div>
   </div>
