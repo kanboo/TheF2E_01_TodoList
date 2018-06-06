@@ -2,7 +2,9 @@
 
 使用工具： Vue + SCSS
 
-第三方套件： Element(僅 日期時間 功能) 、 Font Awesome
+第三方套件： [Font Awesome](https://fontawesome.com/) 、 [Element](http://element.eleme.io/#/zh-CN)(僅 日期時間 功能) 、 [Moment.js](https://momentjs.com/)
+
+主要目標： 手刻 CSS 及 Vue 的運用
 
 Demo 連結：[TodoList](https://kanboo.github.io/TheF2E_01_TodoList/index.html)
 
