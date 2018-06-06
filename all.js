@@ -119,17 +119,15 @@
         item.filename = e.target.files[0].name;
       },
       customFormatterDate(date) {
-        return moment(date).format('YYYY/MM/DD');
-      },
-      customFormatterTime(time) {
-        return moment(time).format('YYYY/MM/DD');
+        return moment(date).format('MM/DD');
       }
     },
     computed: {
       filteredTodos: function() {
         // console.log(this.visibility);
 
-        this.todos.sort((a, b) => (a.isFavorite < b.isFavorite ? 1 : -1));
+        // 改用 Flex order 控制
+        // this.todos.sort((a, b) => (a.isFavorite < b.isFavorite ? 1 : -1));
 
         // console.log(this.todos);
 
@@ -145,9 +143,6 @@
           return this.todos.filter(item => item.isCompleted);
         }
       }
-    },
-    components: {
-      vuejsDatepicker
     }
   });
 })();

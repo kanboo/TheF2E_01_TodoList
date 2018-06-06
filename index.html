@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
     crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/regular.js" integrity="sha384-t7yHmUlwFrLxHXNLstawVRBMeSLcXTbQ5hsd0ifzwGtN7ZF7RZ8ppM7Ldinuoiif"
@@ -22,20 +23,36 @@
     <header class="header">
       <ul class="nav">
         <div class="nav__item">
-          <a href="#" class="nva__item--link" :class="{'active': visibility === 'all'}" @click="visibility = 'all'">My Tasks</a>
+          <a href="#" class="nva__item--link" :class="{'active': visibility === 'all'}" @click="visibility = 'all'">
+            <span class="headericon">
+              <i class="far fa-list-alt"></i>
+            </span>
+            <span> My Tasks</span>
+          </a>
         </div>
         <div class="nav__item">
-          <a href="#" class="nva__item--link" :class="{'active': visibility === 'progress'}" @click="visibility = 'progress'">In Progress</a>
+          <a href="#" class="nva__item--link" :class="{'active': visibility === 'progress'}" @click="visibility = 'progress'">
+            <span class="headericon">
+              <i class="fas fa-spinner"></i>
+            </span>
+            <span>In Progress</span>
+          </a>
         </div>
         <div class="nav__item">
-          <a href="#" class="nva__item--link" :class="{'active': visibility === 'completed'}" @click="visibility = 'completed'">Completed</a>
+          <a href="#" class="nva__item--link" :class="{'active': visibility === 'completed'}" @click="visibility = 'completed'">
+
+            <span class="headericon">
+              <i class="far fa-check-square"></i>
+            </span>
+            <span>Completed</span>
+          </a>
         </div>
       </ul>
     </header>
 
     <div class="cards">
 
-      <div class="addtask" :class="{ 'active' : isNewTodo }">
+      <div class="addtask" class="isAlwaysTop" :class="{ 'active' : isNewTodo }">
         <a href="#" id="newtask" @click.parent="addTodo" v-if="!isNewTodo">
           <span class="iconplus">
             <i class="fas fa-plus"></i>
@@ -43,7 +60,7 @@
           <span> Add Task</span>
         </a>
 
-        <div class="card" class="" v-if="isNewTodo">
+        <div class="card" v-if="isNewTodo">
           <div class="card__header" :class="{ 'favorite' : newTodo.isFavorite }">
 
             <label for="new_completed" class="checkbox--completed">
@@ -85,8 +102,11 @@
 
               <p>Deadline</p>
               <!-- <input type="datetime" placeholder="yyyy/mm/dd" v-model="newTodo.date"> -->
-              <vuejs-datepicker v-model="newTodo.date" :format="customFormatterDate"></vuejs-datepicker>
-              <input type="datetime" placeholder="hh:mm" v-model="newTodo.time">
+              <!-- <input type="datetime" placeholder="hh:mm" v-model="newTodo.time"> -->
+
+              <el-date-picker v-model="newTodo.date" type="date" placeholder="yyyy/mm/dd">
+              </el-date-picker>
+              <el-time-picker v-model="newTodo.time" format="hh:mm" placeholder="hh:mm">
             </div>
             <div class="card__body--File">
               <span class="titleicon">
@@ -123,7 +143,7 @@
               </div>
               <span>Cancel</span>
             </button>
-            <button class="btn btn--add" type="button" @click.parent="saveTodo(null)">
+            <button class="btn btn--add" type="button" :disabled="newTodo.title==''" @click.parent="saveTodo(null)">
               <div class="farblock">
                 <!-- <i class="far fa-plus-square"></i> -->
                 <i class="far fa-save"></i>
@@ -138,7 +158,7 @@
         </div>
       </div>
 
-      <div class="card" class="" v-for="(item, index) in filteredTodos">
+      <div class="card" class="" v-for="(item, index) in filteredTodos" :class="{ 'isTop' : item.isFavorite }">
 
         <!-- 閱讀區 -->
         <div class="card__header card__header--read" :class="{ 'favorite' : item.isFavorite }" v-if="item.id !==cacheTodo.id">
@@ -153,7 +173,7 @@
             <div class="icons">
               <span class="titleicon" v-if="item.date !== ''">
                 <i class="far fa-calendar-alt"></i>
-                {{ item.date.substr(5) }}
+                {{ customFormatterDate(item.date) }}
               </span>
               <span class="titleicon" v-if="item.filename !== ''">
                 <i class="far fa-file"></i>
@@ -191,7 +211,6 @@
         </div>
 
         <!-- 編輯區 -->
-
         <div class="card__header" :class="{ 'favorite' : item.isFavorite }" v-if="item.id===cacheTodo.id">
 
           <div class="taskinfo">
@@ -248,8 +267,11 @@
             </span>
 
             <p>Deadline</p>
-            <input type="text" placeholder="yyyy/mm/dd" v-model="cacheTodo.date">
-            <input type="text" placeholder="hh:mm" v-model="cacheTodo.time">
+            <!-- <input type="text" placeholder="yyyy/mm/dd" v-model="cacheTodo.date">
+            <input type="text" placeholder="hh:mm" v-model="cacheTodo.time"> -->
+            <el-date-picker v-model="cacheTodo.date" type="date" placeholder="yyyy/mm/dd">
+            </el-date-picker>
+            <el-time-picker v-model="cacheTodo.time" format="hh:mm" placeholder="hh:mm">
           </div>
           <div class="card__body--File">
             <span class="titleicon">
@@ -286,7 +308,7 @@
             </div>
             <span>Cancel</span>
           </button>
-          <button class="btn btn--add" type="button" @click.parent="saveTodo(item)">
+          <button class="btn btn--add" type="button" :disabled="cacheTodo.title==''" @click.parent="saveTodo(item)">
             <div class="farblock">
               <!-- <i class="far fa-plus-square"></i> -->
               <i class="far fa-save"></i>
@@ -307,9 +329,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vuejs-datepicker"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/zh-tw.js"></script> -->
   <script src="./all.js"></script>
 
 </body>
