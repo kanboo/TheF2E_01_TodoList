@@ -27,14 +27,11 @@ body {
     @include flex(center);
 
     &__item {
-      // @include outline(red);
       @include size(160px, $header-hight - 3px);
-      // margin: 0 25px;
 
       margin-right: 40px;
 
       a {
-        // @include outline(red);
         @include size(180px, $header-hight - 3px);
 
         display: block;
@@ -57,9 +54,6 @@ body {
 }
 
 .addtask {
-  // @include outline(red);
-  // margin-bottom: 20px;
-
   #newtask {
     @include size(620px, 50px);
 
@@ -75,24 +69,9 @@ body {
       margin-right: 1rem;
     }
   }
-
-  // .card {
-  //   display: none;
-  // }
-
-  // &.active {
-  //   #newtask {
-  //     display: none;
-  //   }
-
-  //   .card {
-  //     display: block;
-  //   }
-  // }
 }
 
 .cards {
-  // @include outline(blue);
   @include flex(center);
 
   width: 620px;
@@ -103,6 +82,7 @@ body {
   &__footer {
     align-self: flex-start;
     margin-top: .8rem;
+    margin-bottom: 80px;
     margin-left: 2rem;
     color: #c8c8c8;
     font-size: 1.5rem;
@@ -112,7 +92,6 @@ body {
 }
 
 .card {
-  // @include outline(red);
   @include size(620px, auto);
 
   overflow: hidden;
@@ -144,7 +123,6 @@ body {
   }
 
   &__header {
-    // @include outline(red);
     @include size(100%, 76px);
     @include flex(flex-start, flex-start);
 
@@ -169,7 +147,6 @@ body {
         top: 42px;
         left: 3rem;
         width: 200px;
-        // display: none;
         color: #757575;
         font-size: 1rem;
 
@@ -181,6 +158,8 @@ body {
 
     .checkbox--completed {
       @include flex(center);
+
+      font-weight: 550;
 
       .checkbox {
         @include size(1.8rem);
@@ -301,20 +280,11 @@ body {
     }
 
     &--Deadline {
-      // @include outline(red);
       position: relative;
       margin-top: 24px;
 
-      .vdp-datepicker {
-        display: inline-block;
-      }
-
-      input {
-        @include size(162px, 35px);
-
-        padding-left: 1rem;
-        border: 0;
-        outline: 0;
+      .el-date-editor.el-input,.el-date-editor.el-input__inner {
+        width: 164px;
       }
     }
 
@@ -349,7 +319,6 @@ body {
       margin-top: 20px;
 
       textarea {
-        // padding-top: 8px;
         padding-left: 1rem;
       }
     }
@@ -433,7 +402,6 @@ body {
 
 .isTop {
   order: 1;
-  // background-color: #FFF2DC;
 }
 
 .isAlwaysTop {
