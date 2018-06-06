@@ -2,7 +2,7 @@
 
 使用工具： Vue + SCSS
 
-第三方套件： [Font Awesome](https://fontawesome.com/) 、 [Element](http://element.eleme.io/#/zh-CN)(僅 日期時間 功能) 、 [Moment.js](https://momentjs.com/)
+第三方套件： [Font Awesome](https://fontawesome.com/) 、 [Sortable](https://github.com/RubaXa/Sortable) 、 [Moment.js](https://momentjs.com/) 、 [Element](http://element.eleme.io/#/zh-CN)(僅 日期時間 功能)
 
 主要目標： 手刻 CSS 及 Vue 的運用
 

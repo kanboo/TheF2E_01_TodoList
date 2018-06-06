@@ -145,4 +145,10 @@
       }
     }
   });
+
+  // 拖拉功能
+  Sortable.create(cards, {
+    handle: '.dragicon',
+    animation: 150
+  });
 })();

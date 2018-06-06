@@ -94,12 +94,26 @@ body {
 .card {
   @include size(620px, auto);
 
+  position: relative;
   overflow: hidden;
   transition: transform .5s;
   border-radius: 5px;
   box-shadow: 0 4px 4px 0 #c8c8c8;
 
   order: 80;
+
+  .dragicon {
+    position: absolute;
+    top: 31px;
+    left: 6px;
+    width: 25px;
+    height: 50px;
+    cursor: move;
+    cursor: -webkit-grabbing;
+    text-align: center;
+    color: #c8c8c8;
+    font-size: 34px;
+  }
 
   &::after {
     content: "";

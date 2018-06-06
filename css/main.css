@@ -563,6 +563,7 @@ img {
 .card {
   width: 620px;
   height: auto;
+  position: relative;
   overflow: hidden;
   -webkit-transition: -webkit-transform .5s;
   transition: -webkit-transform .5s;
@@ -576,6 +577,19 @@ img {
   -webkit-order: 80;
       -ms-flex-order: 80;
           order: 80;
+}
+
+.card .dragicon {
+  position: absolute;
+  top: 31px;
+  left: 6px;
+  width: 25px;
+  height: 50px;
+  cursor: move;
+  cursor: -webkit-grabbing;
+  text-align: center;
+  color: #c8c8c8;
+  font-size: 34px;
 }
 
 .card::after {
