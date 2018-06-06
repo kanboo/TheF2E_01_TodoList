@@ -767,6 +767,10 @@ img {
   margin-top: 24px;
 }
 
+.card__body--Deadline .vdp-datepicker {
+  display: inline-block;
+}
+
 .card__body--Deadline input {
   width: 162px;
   height: 35px;
@@ -790,7 +794,7 @@ img {
 
 .card__body--File .fileicon {
   color: #c8c8c8;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 .card__body--File .fileicon:hover {

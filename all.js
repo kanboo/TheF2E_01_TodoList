@@ -117,12 +117,17 @@
       getFiles(e, item) {
         console.log(e.target.files);
         item.filename = e.target.files[0].name;
+      },
+      customFormatterDate(date) {
+        return moment(date).format('YYYY/MM/DD');
+      },
+      customFormatterTime(time) {
+        return moment(time).format('YYYY/MM/DD');
       }
     },
     computed: {
       filteredTodos: function() {
         // console.log(this.visibility);
-        console.log('filteredTodos~~~~');
 
         this.todos.sort((a, b) => (a.isFavorite < b.isFavorite ? 1 : -1));
 
@@ -140,6 +145,9 @@
           return this.todos.filter(item => item.isCompleted);
         }
       }
+    },
+    components: {
+      vuejsDatepicker
     }
   });
 })();

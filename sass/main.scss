@@ -253,6 +253,10 @@ $header-hight: 72px;
       position: relative;
       margin-top: 24px;
 
+      .vdp-datepicker {
+        display: inline-block;
+      }
+
       input {
         @include size(162px, 35px);
 
@@ -276,7 +280,7 @@ $header-hight: 72px;
 
       .fileicon {
         color: #c8c8c8;
-        font-size: 1.2rem;
+        font-size: 2rem;
 
         &:hover {
           color: #4a90e2;
