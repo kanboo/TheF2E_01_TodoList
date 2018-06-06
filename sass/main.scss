@@ -258,7 +258,7 @@ body {
   }
 
   &__body {
-    @include size(100%, 383px);
+    @include size(100%, auto);
     @include flex(flex-start);
 
     padding-left: 97px;
@@ -317,6 +317,7 @@ body {
     &--Comment {
       position: relative;
       margin-top: 20px;
+      margin-bottom: 16px;
 
       textarea {
         padding-left: 1rem;
@@ -325,7 +326,7 @@ body {
   }
 
   &__footer {
-    @include size(100%, 60px);
+    @include size(100%, auto);
     @include flex(center);
 
     .btn {

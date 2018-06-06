@@ -790,7 +790,7 @@ img {
 
 .card__body {
   width: 100%;
-  height: 383px;
+  height: auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -863,6 +863,7 @@ img {
 .card__body--Comment {
   position: relative;
   margin-top: 20px;
+  margin-bottom: 16px;
 }
 
 .card__body--Comment textarea {
@@ -871,7 +872,7 @@ img {
 
 .card__footer {
   width: 100%;
-  height: 60px;
+  height: auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
