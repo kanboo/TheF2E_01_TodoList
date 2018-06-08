@@ -147,8 +147,9 @@
   });
 
   // 拖拉功能
-  Sortable.create(cards, {
+  Sortable.create(cardList, {
     handle: '.dragicon',
-    animation: 150
+    animation: 150,
+    chosenClass: 'chosen'
   });
 })();

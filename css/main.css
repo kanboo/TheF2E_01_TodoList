@@ -503,7 +503,7 @@ img {
   border-bottom: 5px solid #00408b;
 }
 
-.header .nav__item a .headericon {
+.header .nav__item a .headerIcon {
   margin-right: 10px;
 }
 
@@ -523,7 +523,7 @@ img {
   margin-right: 1rem;
 }
 
-.cards {
+.cardList {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -545,12 +545,12 @@ img {
           flex-flow: column nowrap;
 }
 
-.cards__footer {
+.cardList__footer {
   -webkit-align-self: flex-start;
       -ms-flex-item-align: start;
           align-self: flex-start;
   margin-top: .8rem;
-  margin-bottom: 80px;
+  margin-bottom: 300px;
   margin-left: 2rem;
   color: #c8c8c8;
   font-size: 1.5rem;
@@ -579,7 +579,7 @@ img {
           order: 80;
 }
 
-.card .dragicon {
+.card .dragIcon {
   position: absolute;
   top: 31px;
   left: 6px;
@@ -644,11 +644,11 @@ img {
   background: #fff2dc;
 }
 
-.card__header .taskinfo {
+.card__header .taskInfo {
   position: relative;
 }
 
-.card__header .taskinfo .icons {
+.card__header .taskInfo .icons {
   position: absolute;
   top: 42px;
   left: 3rem;
@@ -657,7 +657,7 @@ img {
   font-size: 1rem;
 }
 
-.card__header .taskinfo .icons span {
+.card__header .taskInfo .icons span {
   margin-right: .5rem;
 }
 
@@ -997,5 +997,11 @@ img {
   -webkit-order: -1;
       -ms-flex-order: -1;
           order: -1;
+}
+
+/* chosenClass */
+.chosen {
+  -webkit-box-shadow: 0 5px 15px 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 5px 15px 6px rgba(0, 0, 0, 0.5);
 }
 /*# sourceMappingURL=main.css.map */

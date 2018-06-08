@@ -23,25 +23,25 @@
     <header class="header">
       <ul class="nav">
         <div class="nav__item">
-          <a href="#" class="nva__item--link" :class="{'active': visibility === 'all'}" @click="visibility = 'all'">
-            <span class="headericon">
+          <a href="javascript:;" class="nva__item--link" :class="{'active': visibility === 'all'}" @click="visibility = 'all'">
+            <span class="headerIcon">
               <i class="far fa-list-alt"></i>
             </span>
             <span> My Tasks</span>
           </a>
         </div>
         <div class="nav__item">
-          <a href="#" class="nva__item--link" :class="{'active': visibility === 'progress'}" @click="visibility = 'progress'">
-            <span class="headericon">
+          <a href="javascript:;" class="nva__item--link" :class="{'active': visibility === 'progress'}" @click="visibility = 'progress'">
+            <span class="headerIcon">
               <i class="fas fa-spinner"></i>
             </span>
             <span>In Progress</span>
           </a>
         </div>
         <div class="nav__item">
-          <a href="#" class="nva__item--link" :class="{'active': visibility === 'completed'}" @click="visibility = 'completed'">
+          <a href="javascript:;" class="nva__item--link" :class="{'active': visibility === 'completed'}" @click="visibility = 'completed'">
 
-            <span class="headericon">
+            <span class="headerIcon">
               <i class="far fa-check-square"></i>
             </span>
             <span>Completed</span>
@@ -50,10 +50,10 @@
       </ul>
     </header>
 
-    <div class="cards" id="cards">
+    <div class="cardList" id="cardList">
 
       <div class="addtask" class="isAlwaysTop" :class="{ 'active' : isNewTodo }">
-        <a href="#" id="newtask" @click.parent="addTodo" v-if="!isNewTodo">
+        <a href="javascript:;" id="newtask" @click.parent="addTodo" v-if="!isNewTodo">
           <span class="iconplus">
             <i class="fas fa-plus"></i>
           </span>
@@ -78,12 +78,9 @@
                 <i class="fas fa-star"></i>
               </div>
             </label>
-            <!-- <a href="#" class="favorite">
-                <i class="far fa-star"></i>
-              </a> -->
 
 
-            <a href="#" class="edit active">
+            <a href="javascript:;" class="edit active">
               <div class="farblock">
                 <i class="far fa-edit"></i>
               </div>
@@ -99,15 +96,12 @@
               <span class="titleicon">
                 <i class="far fa-calendar-alt"></i>
               </span>
-
               <p>Deadline</p>
-              <!-- <input type="datetime" placeholder="yyyy/mm/dd" v-model="newTodo.date"> -->
-              <!-- <input type="datetime" placeholder="hh:mm" v-model="newTodo.time"> -->
-
               <el-date-picker v-model="newTodo.date" type="date" placeholder="yyyy/mm/dd">
               </el-date-picker>
               <el-time-picker v-model="newTodo.time" format="hh:mm" placeholder="hh:mm">
             </div>
+
             <div class="card__body--File">
               <span class="titleicon">
                 <i class="far fa-file"></i>
@@ -119,10 +113,6 @@
                 <input type="file" id="file-upload" @change="getFiles($event, newTodo)">
               </label>
 
-              <!-- <input type="file" class="custom-file-input" id="file-upload">
-                <span class="fileicon">
-                  <i class="fas fa-plus-square"></i>
-                </span> -->
             </div>
             <div class="card__body--Comment">
               <span class="titleicon">
@@ -159,17 +149,18 @@
       </div>
 
       <div class="card" class="" v-for="(item, index) in filteredTodos" :class="{ 'isTop' : item.isFavorite }">
-        <span class="dragicon">
-          <i class="fas fa-ellipsis-v"></i>
-        </span>
+
         <!-- 閱讀區 -->
         <div class="card__header card__header--read" :class="{ 'favorite' : item.isFavorite }" v-if="item.id !==cacheTodo.id">
 
-          <div class="taskinfo">
+          <span class="dragIcon">
+            <i class="fas fa-ellipsis-v"></i>
+          </span>
+
+          <div class="taskInfo">
             <label :for="item.id + '_completed'" class="checkbox--completed">
               <input type="checkbox" class="checkbox" :id="item.id + '_completed'" v-model="item.isCompleted">
               <span class="completed">{{ item.title }}</span>
-              <!-- <input type="text" class="tasktitle" placeholder="Type Something Here…" v-model="item.title"> -->
             </label>
 
             <div class="icons">
@@ -196,13 +187,9 @@
               <i class="fas fa-star"></i>
             </div>
           </label>
-          <!-- <a href="#" class="favorite">
-                <i class="far fa-star"></i>
-              </a> -->
 
 
-          <a href="#" class="edit" @click.parent="editTodo(item)">
-            <!-- <i class="fas fa-pencil-alt"></i> -->
+          <a href="javascript:;" class="edit" @click.parent="editTodo(item)">
             <div class="farblock">
               <i class="far fa-edit"></i>
             </div>
@@ -215,25 +202,11 @@
         <!-- 編輯區 -->
         <div class="card__header" :class="{ 'favorite' : item.isFavorite }" v-if="item.id===cacheTodo.id">
 
-          <div class="taskinfo">
+          <div class="taskInfo">
             <label :for="cacheTodo.id + '_completed'" class="checkbox--completed">
               <input type="checkbox" class="checkbox" :id="cacheTodo.id + '_completed'" v-model="cacheTodo.isCompleted">
-              <!-- <span class="completed">{{ cacheTodo.title }}</span> -->
               <input type="text" class="tasktitle" v-focus placeholder="Type Something Here…" v-model="cacheTodo.title">
             </label>
-
-            <!-- <div class="icons">
-              <span class="titleicon">
-                <i class="far fa-calendar-alt"></i>
-                {{ cacheTodo.date }}
-              </span>
-              <span class="titleicon">
-                <i class="far fa-file"></i>
-              </span>
-              <span class="titleicon">
-                <i class="far fa-comment-alt"></i>
-              </span>
-            </div> -->
           </div>
 
 
@@ -246,13 +219,8 @@
               <i class="fas fa-star"></i>
             </div>
           </label>
-          <!-- <a href="#" class="favorite">
-            <i class="far fa-star"></i>
-          </a> -->
 
-
-          <a href="#" class="edit active">
-            <!-- <i class="fas fa-pencil-alt"></i> -->
+          <a href="javascript:;" class="edit active">
             <div class="farblock">
               <i class="far fa-edit"></i>
             </div>
@@ -262,6 +230,8 @@
           </a>
         </div>
 
+
+        <!-- -------------Card Body-------------------- -->
         <div class="card__body" v-if="item.id===cacheTodo.id">
           <div class="card__body--Deadline">
             <span class="titleicon">
@@ -300,6 +270,7 @@
           </div>
         </div>
 
+        <!-- -------------Card footer-------------------- -->
         <div class="card__footer" v-if="item.id===cacheTodo.id">
           <button class="btn btn--cancel" type="button" @click.parent="cancelEdit">
             <div class="farblock">
@@ -324,7 +295,7 @@
         </div>
       </div>
 
-      <div class="cards__footer">
+      <div class="cardList__footer">
         <span> {{ filteredTodos.length }} tasks left</span>
       </div>
     </div>
