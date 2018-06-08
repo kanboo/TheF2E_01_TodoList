@@ -8,11 +8,7 @@
 
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
-    crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/regular.js" integrity="sha384-t7yHmUlwFrLxHXNLstawVRBMeSLcXTbQ5hsd0ifzwGtN7ZF7RZ8ppM7Ldinuoiif"
-    crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
     crossorigin="anonymous"></script>
 
   <title>TheF2E_01_TodoList</title>
@@ -21,7 +17,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107001663-4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'UA-107001663-4');
@@ -168,6 +167,10 @@
 
       <!-- Todo項目 -->
       <div class="card" class="" v-for="(item, index) in filteredTodos" :class="{ 'isTop' : item.isFavorite }">
+
+        <a href="javascript:;" class="delete--btn" @click="delTodo(index)">
+          <i class="fas fa-trash-alt"></i>
+        </a>
 
         <!-- Card Header---------------------------------Start -->
         <!-- 閱讀區 -->
@@ -320,6 +323,18 @@
       </div>
     </div>
   </div>
+
+  <footer class="footer">
+    <div class="footer__text">
+      Todo List - The F2E 前端修練精神時光屋 | Designed by
+      <span class="author">
+        Kanboo Wang
+      </span>
+    </div>
+    <a href="https://github.com/kanboo/" target="_blank" class="footer__link">
+      <i class="fab fa-github"></i>
+    </a>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>

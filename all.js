@@ -1,7 +1,6 @@
 (() => {
   const data = {
-    todos: [
-      {
+    todos: [{
         id: '1',
         title: '第一筆測試資料',
         date: '2018/02/04',
@@ -63,7 +62,7 @@
     directives: {
       focus: {
         // 指令的定義
-        inserted: function(el) {
+        inserted: function (el) {
           el.focus();
         }
       }
@@ -114,6 +113,9 @@
         this.resetNewTodo(false);
         this.cacheTodo = {};
       },
+      delTodo(delIndex) {
+        this.todos.splice(delIndex, 1);
+      },
       getFiles(e, item) {
         console.log(e.target.files);
         item.filename = e.target.files[0].name;
@@ -123,7 +125,7 @@
       }
     },
     computed: {
-      filteredTodos: function() {
+      filteredTodos: function () {
         // console.log(this.visibility);
 
         // 改用 Flex order 控制
