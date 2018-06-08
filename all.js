@@ -148,7 +148,7 @@
 
   // 拖拉功能
   Sortable.create(cardList, {
-    handle: '.dragicon',
+    handle: '.dragIcon',
     animation: 150,
     chosenClass: 'chosen'
   });
