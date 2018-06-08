@@ -507,7 +507,7 @@ img {
   margin-right: 10px;
 }
 
-.addtask #newtask {
+.addTask #newTask {
   width: 620px;
   height: 50px;
   display: block;
@@ -519,7 +519,7 @@ img {
   line-height: 50px;
 }
 
-.addtask #newtask .iconplus {
+.addTask #newTask .iconPlus {
   margin-right: 1rem;
 }
 
@@ -734,11 +734,11 @@ img {
   transition: rotate scale .5s;
 }
 
-.card__header .checkbox--favorite .farblock {
+.card__header .checkbox--favorite .farBlock {
   color: #000000;
 }
 
-.card__header .checkbox--favorite .fasblock {
+.card__header .checkbox--favorite .fasBlock {
   display: none;
   color: #f5a623;
 }
@@ -747,11 +747,11 @@ img {
   display: none;
 }
 
-.card__header .checkbox--favorite input[type="checkbox"]:checked ~ .farblock {
+.card__header .checkbox--favorite input[type="checkbox"]:checked ~ .farBlock {
   display: none;
 }
 
-.card__header .checkbox--favorite input[type="checkbox"]:checked ~ .fasblock {
+.card__header .checkbox--favorite input[type="checkbox"]:checked ~ .fasBlock {
   display: block;
 }
 
@@ -779,20 +779,20 @@ img {
   transition: rotate scale .5s;
 }
 
-.card__header .edit .farblock {
+.card__header .edit .farBlock {
   color: #000000;
 }
 
-.card__header .edit .fasblock {
+.card__header .edit .fasBlock {
   display: none;
   color: #4a90e2;
 }
 
-.card__header .edit.active .farblock {
+.card__header .edit.active .farBlock {
   display: none;
 }
 
-.card__header .edit.active .fasblock {
+.card__header .edit.active .fasBlock {
   display: block;
 }
 
@@ -833,7 +833,7 @@ img {
   font-size: 20px;
 }
 
-.card__body .titleicon {
+.card__body .titleIcon {
   position: absolute;
   top: 2px;
   left: -23px;
@@ -861,12 +861,12 @@ img {
   font-size: 1rem;
 }
 
-.card__body--File .fileicon {
+.card__body--File .fileIcon {
   color: #c8c8c8;
   font-size: 2rem;
 }
 
-.card__body--File .fileicon:hover {
+.card__body--File .fileIcon:hover {
   color: #4a90e2;
 }
 
@@ -925,20 +925,20 @@ img {
   font-size: 24px;
 }
 
-.card__footer .btn .farblock {
+.card__footer .btn .farBlock {
   font-size: 24px;
 }
 
-.card__footer .btn .fasblock {
+.card__footer .btn .fasBlock {
   display: none;
   font-size: 24px;
 }
 
-.card__footer .btn:hover .farblock {
+.card__footer .btn:hover .farBlock {
   display: none;
 }
 
-.card__footer .btn:hover .fasblock {
+.card__footer .btn:hover .fasBlock {
   display: block;
 }
 
@@ -947,11 +947,11 @@ img {
   background: #ffffff;
 }
 
-.card__footer .btn--cancel .farblock {
+.card__footer .btn--cancel .farBlock {
   font-size: 20px;
 }
 
-.card__footer .btn--cancel .fasblock {
+.card__footer .btn--cancel .fasBlock {
   font-size: 20px;
 }
 
@@ -969,11 +969,11 @@ img {
   background-color: #c8c8c8;
 }
 
-.card__footer .btn--add:disabled .farblock {
+.card__footer .btn--add:disabled .farBlock {
   display: block;
 }
 
-.card__footer .btn--add:disabled .fasblock {
+.card__footer .btn--add:disabled .fasBlock {
   display: none;
 }
 

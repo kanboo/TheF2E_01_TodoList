@@ -9,13 +9,6 @@
 
 $header-hight: 72px;
 
-body {
-  // background-image: url(https://images.unsplash.com/photo-1480771956109-c15c8d72172d?ixlib=rb-0.3.5&s=4fa8808a4f50c101cd5c93c13ed15a0a&auto=format&fit=crop&w=1050&q=80);
-  // background-repeat: no-repeat;
-  // background-position: center;
-  // background-size: cover;
-}
-
 .header {
   @include size(100%, $header-hight);
   @include flex(center);
@@ -53,8 +46,8 @@ body {
   }
 }
 
-.addtask {
-  #newtask {
+.addTask {
+  #newTask {
     @include size(620px, 50px);
 
     display: block;
@@ -65,7 +58,7 @@ body {
     font-size: 1.5rem;
     line-height: 50px;
 
-    .iconplus {
+    .iconPlus {
       margin-right: 1rem;
     }
   }
@@ -219,10 +212,10 @@ body {
       margin-left: auto;
       transition: rotate scale .5s;
 
-      .farblock {
+      .farBlock {
         color: #000000;
       }
-      .fasblock {
+      .fasBlock {
         display: none;
         color: #f5a623;
       }
@@ -230,10 +223,10 @@ body {
       input[type="checkbox"] {
         display: none;
 
-        &:checked ~ .farblock {
+        &:checked ~ .farBlock {
           display: none;
         }
-        &:checked ~ .fasblock {
+        &:checked ~ .fasBlock {
           display: block;
         }
       }
@@ -248,19 +241,19 @@ body {
 
       transition: rotate scale .5s;
 
-      .farblock {
+      .farBlock {
         color: #000000;
       }
-      .fasblock {
+      .fasBlock {
         display: none;
         color: #4a90e2;
       }
 
       &.active {
-        .farblock {
+        .farBlock {
           display: none;
         }
-        .fasblock {
+        .fasBlock {
           display: block;
         }
       }
@@ -287,7 +280,7 @@ body {
       font-size: 20px;
     }
 
-    .titleicon {
+    .titleIcon {
       position: absolute;
       top: 2px;
       left: -23px;
@@ -314,7 +307,7 @@ body {
         font-size: 1rem;
       }
 
-      .fileicon {
+      .fileIcon {
         color: #c8c8c8;
         font-size: 2rem;
 
@@ -355,19 +348,19 @@ body {
         font-size: 24px;
       }
 
-      .farblock {
+      .farBlock {
         font-size: 24px;
       }
-      .fasblock {
+      .fasBlock {
         display: none;
         font-size: 24px;
       }
 
       &:hover {
-        .farblock {
+        .farBlock {
           display: none;
         }
-        .fasblock {
+        .fasBlock {
           display: block;
         }
       }
@@ -377,10 +370,10 @@ body {
       color: #d0021b;
       background: #ffffff;
 
-      .farblock {
+      .farBlock {
         font-size: 20px;
       }
-      .fasblock {
+      .fasBlock {
         font-size: 20px;
       }
 
@@ -396,10 +389,10 @@ body {
         cursor: default;
         background-color: #c8c8c8;
 
-        .farblock {
+        .farBlock {
           display: block;
         }
-        .fasblock {
+        .fasBlock {
           display: none;
         }
       }
