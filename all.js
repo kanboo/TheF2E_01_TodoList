@@ -1,6 +1,7 @@
 (() => {
   const data = {
-    todos: [{
+    todos: [
+      {
         id: '1',
         title: '第一筆測試資料',
         date: '2018/02/04',
@@ -39,6 +40,16 @@
         comment: '',
         isCompleted: false,
         isFavorite: true
+      },
+      {
+        id: '5',
+        title: '第五筆測試資料',
+        date: '2018/09/05',
+        time: '16:20',
+        filename: 'text.word',
+        comment: '',
+        isCompleted: false,
+        isFavorite: false
       }
     ],
     isNewTodo: false,
@@ -62,7 +73,7 @@
     directives: {
       focus: {
         // 指令的定義
-        inserted: function (el) {
+        inserted: function(el) {
           el.focus();
         }
       }
@@ -125,7 +136,7 @@
       }
     },
     computed: {
-      filteredTodos: function () {
+      filteredTodos: function() {
         // console.log(this.visibility);
 
         // 改用 Flex order 控制

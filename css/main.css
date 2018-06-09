@@ -454,7 +454,7 @@ img {
 }
 
 .header {
-  width: 100%;
+  width: 100vw;
   height: 72px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -485,16 +485,17 @@ img {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  background: #007bff;
 }
 
 .header .nav__item {
-  width: 160px;
+  width: auto;
   height: 69px;
   margin-right: 40px;
 }
 
 .header .nav__item a {
-  width: 180px;
+  width: 100%;
   height: 69px;
   display: block;
   text-align: center;
@@ -512,11 +513,27 @@ img {
   margin-right: 10px;
 }
 
+@media screen and (max-width: 414px) {
+  .header .nav .item--text {
+    display: none;
+  }
+  .header .nav__item {
+    margin-right: 10px;
+  }
+  .header .nav__item a {
+    width: 110px;
+  }
+}
+
 .addTask #newTask {
   width: 620px;
   height: 50px;
   display: block;
+  overflow: hidden;
   padding-left: 2.2rem;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
   color: #c8c8c8;
   border: 2px solid #c8c8c8;
   border-radius: 5px;
@@ -526,6 +543,17 @@ img {
 
 .addTask #newTask .iconPlus {
   margin-right: 1rem;
+}
+
+.addTask #newTask.hidden {
+  height: 0px;
+  border: 0;
+}
+
+@media screen and (max-width: 414px) {
+  .addTask #newTask {
+    width: 345px;
+  }
 }
 
 .cardList {
@@ -565,6 +593,12 @@ img {
           order: 999;
 }
 
+@media screen and (max-width: 414px) {
+  .cardList {
+    width: 345px;
+  }
+}
+
 .card {
   width: 620px;
   height: auto;
@@ -581,6 +615,12 @@ img {
   -webkit-order: 80;
       -ms-flex-order: 80;
           order: 80;
+}
+
+@media screen and (max-width: 414px) {
+  .card {
+    width: 345px;
+  }
 }
 
 .card .dragIcon {
@@ -661,6 +701,12 @@ img {
   background-color: #d0021b;
 }
 
+@media screen and (max-width: 414px) {
+  .card:hover .delete--btn, .card:focus .delete--btn {
+    display: none;
+  }
+}
+
 .card__header {
   width: 100%;
   height: 76px;
@@ -680,6 +726,12 @@ img {
   padding-top: 24px;
   background: #f2f2f2;
   font-size: 1.5rem;
+}
+
+@media screen and (max-width: 414px) {
+  .card__header {
+    padding-right: 15px;
+  }
 }
 
 .card__header--read {
@@ -710,7 +762,7 @@ img {
 
 .card__header .taskTitle:focus {
   padding-bottom: 5px;
-  border-bottom: 1px solid #2027ac;
+  border-bottom: 1px solid #4a90e2;
 }
 
 .card__header .checkbox--completed {
@@ -768,6 +820,12 @@ img {
   background: transparent;
 }
 
+@media screen and (max-width: 414px) {
+  .card__header .checkbox--completed input {
+    width: 190px;
+  }
+}
+
 .card__header .checkbox--favorite {
   display: -webkit-box;
   display: -webkit-flex;
@@ -786,6 +844,12 @@ img {
   -webkit-transition: rotate scale .5s;
   -o-transition: rotate scale .5s;
   transition: rotate scale .5s;
+}
+
+@media screen and (max-width: 414px) {
+  .card__header .checkbox--favorite {
+    margin-right: 15px;
+  }
 }
 
 .card__header .checkbox--favorite .farBlock {
@@ -858,7 +922,7 @@ img {
 
 .card__body {
   width: 100%;
-  height: auto;
+  height: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -871,7 +935,11 @@ img {
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
           align-items: flex-start;
+  overflow: hidden;
   padding-left: 97px;
+  -webkit-transition: height .7s;
+  -o-transition: height .7s;
+  transition: height .7s;
   border-top: 2px solid #c8c8c8;
   background: #f2f2f2;
   -webkit-box-orient: vertical;
@@ -879,6 +947,16 @@ img {
   -webkit-flex-flow: column nowrap;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
+}
+
+@media screen and (max-width: 414px) {
+  .card__body {
+    padding-left: 30px;
+  }
+}
+
+.card__body.active {
+  height: 400px;
 }
 
 .card__body p {
@@ -900,6 +978,12 @@ img {
 
 .card__body--Deadline .el-date-editor.el-input, .card__body--Deadline .el-date-editor.el-input__inner {
   width: 164px;
+}
+
+@media screen and (max-width: 414px) {
+  .card__body--Deadline .el-date-editor.el-input, .card__body--Deadline .el-date-editor.el-input__inner {
+    width: 150px;
+  }
 }
 
 .card__body--File {
@@ -935,12 +1019,22 @@ img {
 }
 
 .card__body--Comment textarea {
+  width: 480px;
+  height: 120px;
   padding-left: 1rem;
+  outline: 0;
+}
+
+@media screen and (max-width: 414px) {
+  .card__body--Comment textarea {
+    width: 305px;
+    height: 120px;
+  }
 }
 
 .card__footer {
   width: 100%;
-  height: auto;
+  height: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -953,6 +1047,14 @@ img {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow: hidden;
+  -webkit-transition: height 1s;
+  -o-transition: height 1s;
+  transition: height 1s;
+}
+
+.card__footer.active {
+  height: 60px;
 }
 
 .card__footer .btn {
@@ -1067,6 +1169,12 @@ img {
   font-weight: 300;
 }
 
+@media screen and (max-width: 414px) {
+  .footer__text {
+    padding-left: 16px;
+  }
+}
+
 .footer .author {
   font-size: 16px;
   font-weight: 900;
@@ -1078,6 +1186,7 @@ img {
   -o-transition: transform .4s;
   transition: transform .4s;
   transition: transform .4s, -webkit-transform .4s;
+  text-align: center;
   color: #ffffff;
   font-size: 24px;
 }
@@ -1087,6 +1196,13 @@ img {
       -ms-transform: rotate(400deg) scale(1.4);
           transform: rotate(400deg) scale(1.4);
   color: #f4e5c2;
+}
+
+@media screen and (max-width: 414px) {
+  .footer__link {
+    width: 100px;
+    text-align: center;
+  }
 }
 
 .isTop {

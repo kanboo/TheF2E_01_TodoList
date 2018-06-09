@@ -31,36 +31,40 @@
 <body>
   <div id="app">
 
-    <!-- 上方navbar -->
+    <!-- navbar---------------------------------Start -->
     <header class="header">
       <ul class="nav">
+
         <div class="nav__item">
           <a href="javascript:;" class="nva__item--link" :class="{'active': visibility === 'all'}" @click="visibility = 'all'">
             <span class="headerIcon">
               <i class="far fa-list-alt"></i>
             </span>
-            <span> My Tasks</span>
+            <span class="item--text">My Tasks</span>
           </a>
         </div>
+
         <div class="nav__item">
           <a href="javascript:;" class="nva__item--link" :class="{'active': visibility === 'progress'}" @click="visibility = 'progress'">
             <span class="headerIcon">
               <i class="fas fa-spinner"></i>
             </span>
-            <span>In Progress</span>
+            <span class="item--text">In Progress</span>
           </a>
         </div>
+
         <div class="nav__item">
           <a href="javascript:;" class="nva__item--link" :class="{'active': visibility === 'completed'}" @click="visibility = 'completed'">
-
             <span class="headerIcon">
               <i class="far fa-check-square"></i>
             </span>
-            <span>Completed</span>
+            <span class="item--text">Completed</span>
           </a>
         </div>
+
       </ul>
     </header>
+    <!-- navbar---------------------------------End -->
 
     <!-- 待辦清單 -->
     <div class="cardList" id="cardList">
@@ -69,7 +73,7 @@
       <!-- 新增Task---------------------------------Start -->
       <div class="addTask" class="isAlwaysTop" :class="{ 'active' : isNewTodo }">
 
-        <a href="javascript:;" id="newTask" @click.parent="addTodo" v-if="!isNewTodo">
+        <a href="javascript:;" id="newTask" @click.parent="addTodo" :class="{ 'hidden' : isNewTodo }">
           <span class="iconPlus">
             <i class="fas fa-plus"></i>
           </span>
@@ -106,7 +110,7 @@
 
           </div>
 
-          <div class="card__body">
+          <div class="card__body active">
             <div class="card__body--Deadline">
               <span class="titleIcon">
                 <i class="far fa-calendar-alt"></i>
@@ -138,7 +142,7 @@
             </div>
           </div>
 
-          <div class="card__footer">
+          <div class="card__footer active">
             <button class="btn btn--cancel" type="button" @click.parent="cancelEdit">
               <div class="farBlock">
                 <i class="far fa-trash-alt"></i>
@@ -173,20 +177,23 @@
         </a>
 
         <!-- Card Header---------------------------------Start -->
-        <!-- 閱讀區 -->
-        <div class="card__header card__header--read" :class="{ 'favorite' : item.isFavorite }" v-if="item.id !==cacheTodo.id">
+        <div class="card__header" :class="{ 'favorite' : item.isFavorite , 'card__header--read' : item.id !== cacheTodo.id }">
 
-          <span class="dragIcon">
+          <span class="dragIcon" v-if="item.id !== cacheTodo.id">
             <i class="fas fa-ellipsis-v"></i>
           </span>
 
+
           <div class="taskInfo">
-            <label :for="item.id + '_completed'" class="checkbox--completed">
-              <input type="checkbox" class="checkbox" :id="item.id + '_completed'" v-model="item.isCompleted">
-              <span class="completed">{{ item.title }}</span>
+            <label :for="'completed_' + index" class="checkbox--completed">
+              <input type="checkbox" class="checkbox" :id="'completed_' + index" v-model="item.isCompleted" v-if="item.id !== cacheTodo.id">
+              <input type="checkbox" class="checkbox" :id="'completed_' + index" v-model="cacheTodo.isCompleted" v-if="item.id === cacheTodo.id">
+              <span class="completed" v-if="item.id !== cacheTodo.id">{{ item.title }}</span>
+              <input type="text" class="taskTitle" v-focus v-model="cacheTodo.title" v-if="item.id === cacheTodo.id" placeholder="Type Something Here…">
             </label>
 
-            <div class="icons">
+            <!-- 小icon訊息 -->
+            <div class="icons" v-if="item.id !== cacheTodo.id">
               <span class="titleIcon" v-if="item.date !== ''">
                 <i class="far fa-calendar-alt"></i>
                 {{ customFormatterDate(item.date) }}
@@ -201,8 +208,10 @@
           </div>
 
 
-          <label :for="item.id + '_favorite'" class="checkbox--favorite">
-            <input type="checkbox" :id="item.id + '_favorite'" v-model="item.isFavorite">
+          <!-- First Todo -->
+          <label :for="'favorite_' + index" class="checkbox--favorite">
+            <input type="checkbox" :id="'favorite_' + index" v-model="item.isFavorite" v-if="item.id !== cacheTodo.id">
+            <input type="checkbox" :id="'favorite_' + index" v-model="cacheTodo.isFavorite" v-if="item.id === cacheTodo.id">
             <div class="farBlock">
               <i class="far fa-star"></i>
             </div>
@@ -212,7 +221,8 @@
           </label>
 
 
-          <a href="javascript:;" class="edit" @click.parent="editTodo(item)">
+          <!-- 編輯動作 -->
+          <a href="javascript:;" class="edit" :class="{ 'active' : item.id !== cacheTodo.id }" @click.parent="editTodo(item.id !== cacheTodo.id ? item : cacheTodo)">
             <div class="farBlock">
               <i class="far fa-edit"></i>
             </div>
@@ -220,50 +230,20 @@
               <i class="fas fa-pencil-alt"></i>
             </div>
           </a>
-        </div>
-
-        <!-- 編輯區 -->
-
-        <div class="card__header" :class="{ 'favorite' : item.isFavorite }" v-if="item.id===cacheTodo.id">
-
-          <div class="taskInfo">
-            <label :for="cacheTodo.id + '_completed'" class="checkbox--completed">
-              <input type="checkbox" class="checkbox" :id="cacheTodo.id + '_completed'" v-model="cacheTodo.isCompleted">
-              <input type="text" class="taskTitle" v-focus placeholder="Type Something Here…" v-model="cacheTodo.title">
-            </label>
-          </div>
 
 
-          <label :for="cacheTodo.id + '_favorite'" class="checkbox--favorite">
-            <input type="checkbox" :id="cacheTodo.id + '_favorite'" v-model="cacheTodo.isFavorite">
-            <div class="farBlock">
-              <i class="far fa-star"></i>
-            </div>
-            <div class="fasBlock">
-              <i class="fas fa-star"></i>
-            </div>
-          </label>
-
-          <a href="javascript:;" class="edit active">
-            <div class="farBlock">
-              <i class="far fa-edit"></i>
-            </div>
-            <div class="fasBlock">
-              <i class="fas fa-pencil-alt"></i>
-            </div>
-          </a>
         </div>
         <!-- Card Header---------------------------------End -->
 
         <!-- Card Body---------------------------------Start -->
-        <div class="card__body" v-if="item.id===cacheTodo.id">
+        <div class="card__body" :class="{ 'active' : item.id === cacheTodo.id}">
 
           <div class="card__body--Deadline">
             <span class="titleIcon">
               <i class="far fa-calendar-alt"></i>
             </span>
             <p>Deadline</p>
-            <el-date-picker v-model="cacheTodo.date" type="date" placeholder="yyyy/mm/dd">
+            <el-date-picker v-model="cacheTodo.date" placeholder="yyyy/mm/dd">
             </el-date-picker>
             <el-time-picker v-model="cacheTodo.time" format="hh:mm" placeholder="hh:mm">
           </div>
@@ -285,13 +265,13 @@
               <i class="far fa-comment-alt"></i>
             </span>
             <p>Comment</p>
-            <textarea cols="50" rows="5" placeholder="Type your memo here..." v-model="cacheTodo.comment"></textarea>
+            <textarea placeholder="Type your memo here..." v-model="cacheTodo.comment"></textarea>
           </div>
         </div>
         <!-- Card Body---------------------------------End -->
 
         <!-- Card footer---------------------------------Start -->
-        <div class="card__footer" v-if="item.id===cacheTodo.id">
+        <div class="card__footer" :class="{ 'active' : item.id === cacheTodo.id}">
           <button class="btn btn--cancel" type="button" @click.parent="cancelEdit">
             <div class="farBlock">
               <i class="far fa-trash-alt"></i>
@@ -326,9 +306,11 @@
 
   <footer class="footer">
     <div class="footer__text">
-      Todo List - The F2E 前端修練精神時光屋 | Designed by
+      <span>Todo List - The F2E 前端修練精神時光屋</span>
+      <span>|</span>
+
       <span class="author">
-        Kanboo Wang
+        Designed by Kanboo Wang
       </span>
     </div>
     <a href="https://github.com/kanboo/" target="_blank" class="footer__link">
