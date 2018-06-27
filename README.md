@@ -8,6 +8,16 @@
 
 Demo 連結：[TodoList](https://kanboo.github.io/TheF2E_01_TodoList/index.html)
 
+# Preview
+
+![Image](https://raw.githubusercontent.com/kanboo/TheF2E_01_TodoList/master/SideProjectImage/TodoList_01.png)
+
+![Image](https://raw.githubusercontent.com/kanboo/TheF2E_01_TodoList/master/SideProjectImage/TodoList_02.png)
+
+![Image](https://raw.githubusercontent.com/kanboo/TheF2E_01_TodoList/master/SideProjectImage/TodoList_03.png)
+
+![Image](https://raw.githubusercontent.com/kanboo/TheF2E_01_TodoList/master/SideProjectImage/TodoList_05.png)
+
 # 資源
 
 Todolist 設計稿：[Link](https://hexschool.github.io/THE_F2E_Design/todolist/)
